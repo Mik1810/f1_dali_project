@@ -1,0 +1,10 @@
+:- write('Ferrari SF-24 ready.').
+
+start_raceE:> write('Ferrari LAP 1: LIGHTS OUT AND AWAY WE GO!'), messageA(mclaren, send_message(lap_1_done, ferrari)).
+
+lap_2_doneE:> write('Ferrari LAP 3: Box box box! Undercut strategy!'), messageA(mclaren, send_message(ferrari_pitted, ferrari)).
+
+mclaren_pittedE:> write('Ferrari LAP 4: McLaren out of pits. Defending position!'), messageA(mclaren, send_message(final_lap, ferrari)).
+
+finishE:> write('Ferrari LAP 5: CHEQUERED FLAG! Ferrari wins the Grand Prix! FORZA FERRARI!').
+
