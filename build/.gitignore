@@ -1,0 +1,4 @@
+# Ignore DALI auto-generated build artifacts
+*
+!.gitignore
+!null

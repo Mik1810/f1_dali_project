@@ -1,0 +1,4 @@
+# Ignore DALI auto-generated compiled agent files
+*
+!.gitignore
+!null
