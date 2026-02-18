@@ -1,8 +1,0 @@
-send_message(send_message(lap2_mclaren,mclaren))
-send_message(send_message(lap4_mclaren,mclaren))
-send_message(send_message(lap2_mclaren,mclaren))
-send_message(send_message(lap4_mclaren,mclaren))
-send_message(send_message(lap2_mclaren,mclaren))
-send_message(send_message(lap4_mclaren,mclaren))
-send_message(send_message(lap2_mclaren,mclaren))
-send_message(send_message(lap4_mclaren,mclaren))
