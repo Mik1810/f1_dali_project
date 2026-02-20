@@ -8,6 +8,8 @@
 - [ ] Ripulire le varie scritte degli eventi
 - [ ] Fare il porting su Docker
 - [ ] Fare UI con grafica con circuito e macchine
+- [ ] Fare sequence diagrams
+- [ ] Fare documentazione
 ### Bug
 - [ ] Fixare bug "External precondition ... noDeltatime"
 - [ ] Non sempre lo startmas fa partire correttamente il programma
