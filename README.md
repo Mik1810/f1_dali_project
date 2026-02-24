@@ -345,6 +345,130 @@ f1_race/
 
 ---
 
+## Sequence Diagrams
+
+### 1 — Startup
+
+```mermaid
+sequenceDiagram
+    participant SC as SafetyCar
+    participant PW as PitWall
+    participant C1 as Car[0] (Ferrari)
+    participant C2 as Car[1] (McLaren)
+    participant SEM as Semaphore
+
+    SC->>SEM: ready
+    PW->>SEM: ready
+    C1->>SEM: ready
+    C2->>SEM: ready
+
+    Note over SEM: ready_count = N_cars + 2<br/>→ lights_sequence
+
+    SEM->>SEM: light 1..5 (sleep 1s each)
+    SEM->>SEM: LIGHTS OUT (sleep 2s)
+    SEM->>C1: start_race
+
+    Note over C1: assert(race_started)<br/>LAP 1 — LIGHTS OUT!
+    C1->>PW: lap_done_ferrari
+```
+
+### 2 — Lap Round-Robin
+
+```mermaid
+sequenceDiagram
+    participant C1 as Car[0] (Ferrari)
+    participant PW as PitWall
+    participant C2 as Car[1] (McLaren)
+
+    C1->>PW: lap_done_ferrari
+    Note over PW: add_time(ferrari, T)<br/>random_track_event
+    PW->>C2: lap_go_mclaren
+
+    C2->>PW: lap_done_mclaren
+    Note over PW: add_time(mclaren, T)<br/>reset track_event_this_lap<br/>lap(N) → N+1<br/>print_standings
+
+    alt N < total_laps
+        Note over PW: random_track_event
+        PW->>C1: lap_go_ferrari
+    else N = total_laps
+        Note over PW: declare_winner<br/>announce_winner
+        PW->>C1: race_end
+        PW->>C2: race_end
+    end
+```
+
+### 3 — Safety Car: Deploy, Recall, Green Flag Chain
+
+```mermaid
+sequenceDiagram
+    participant PW as PitWall
+    participant SC as SafetyCar
+    participant C1 as Car[0] (Ferrari)
+    participant C2 as Car[1] (McLaren)
+
+    Note over PW: random_track_event → R < 2<br/>assert(track_event_this_lap)
+    PW->>SC: deploy
+    PW->>C1: safety_car_deployed
+    PW->>C2: safety_car_deployed
+
+    Note over SC: deployE: assert(sc_active)<br/>"SAFETY CAR DEPLOYED!"
+    Note over C1: safety_car_deployedE<br/>"Safety car deployed.<br/>Conserving tyres."
+    Note over C2: safety_car_deployedE<br/>"Safety car deployed.<br/>Conserving tyres."
+
+    Note over PW: End of lap — last car done<br/>track_event_this_lap set → send recall
+    PW->>SC: recall
+
+    Note over SC: recallE: retract(sc_active)<br/>"Returning to pits."
+    SC->>PW: sc_recalled
+
+    Note over PW: sc_recalledE<br/>"GREEN FLAG! Track is clear."
+    PW->>C1: green_flag
+    PW->>C2: green_flag
+
+    Note over C1: green_flagE<br/>"GREEN FLAG! Leclerc pushing flat out!"
+    Note over C2: green_flagE<br/>"GREEN FLAG! Norris pushing flat out!"
+```
+
+### 4 — Engine Failure / DNF
+
+```mermaid
+sequenceDiagram
+    participant C1 as Car (Ferrari)
+    participant PW as PitWall
+    participant C2 as Car (McLaren)
+
+    Note over C1: engine_failure_ferrari fired<br/>(random 0.2% each DALI cycle)<br/>assert(engine_failure_ferrari_fired)
+    C1->>PW: ferrari_engine_failure
+
+    Note over PW: ferrari_engine_failureE<br/>assert(ferrari_dnf)<br/>effective_time(ferrari) = 9999
+    PW->>C1: retire_ferrari
+    Note over C1: retire_ferrariE<br/>"LECLERC PARKS THE CAR"
+
+    Note over PW: declare_winner<br/>(if not already race_over)<br/>announce_winner<br/>keysort by effective_time
+    PW->>C1: race_end
+    PW->>C2: race_end
+    Note over C1: race_endE: assert(race_over)
+    Note over C2: race_endE: assert(race_over)
+```
+
+### 5 — Push Lap (Internal Event)
+
+```mermaid
+sequenceDiagram
+    participant C1 as Car (Ferrari)
+    participant PW as PitWall
+
+    Note over C1: push_lap_ferrari condition<br/>race_started ∧ ¬race_over<br/>∧ ¬push_lap_ferrari_fired<br/>∧ random(0,100) < 10  (~10%)
+    Note over C1: push_lap_ferrariI fires<br/>assert(push_lap_ferrari_fired)<br/>"PUSH LAP! going flat out!"
+    C1->>PW: ferrari_push_lap
+
+    Note over PW: ferrari_push_lapE<br/>add_time(ferrari, -3)<br/>"Ferrari fastest lap! -3s"
+
+    Note over C1: On next lap_go_ferrari:<br/>retractall(push_lap_ferrari_fired)<br/>→ can fire again next lap
+```
+
+---
+
 ## DALI Syntax Reference (used in this project)
 
 | Syntax | Meaning | Example |

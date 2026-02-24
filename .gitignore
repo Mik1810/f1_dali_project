@@ -2,3 +2,4 @@
 ui/__pycache__
 __pycache__
 .env
+export_diagrams.py
