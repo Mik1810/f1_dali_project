@@ -1,6 +1,7 @@
 \relax 
 \providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
 \@nameuse{bbl@beforestart}
+\catcode 95\active
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
@@ -12,62 +13,105 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}DALI Overview}{3}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Project Goals}{3}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}System Requirements}{3}{section.2}\protected@file@percent }
-\gdef \LT@ii {\LT@entry 
-    {2}{67.73494pt}\LT@entry 
-    {2}{160.16383pt}\LT@entry 
-    {2}{92.25542pt}\LT@entry 
-    {1}{205.16928pt}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Project Structure}{4}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Agents}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Fixed Infrastructure Agents}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Class Diagram}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Class diagram of the F1 Race MAS.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:class_diagram}{{1}{4}{Class diagram of the F1 Race MAS}{figure.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{CarAgent \textnormal  {(one instance per car, dynamically generated)}}{5}{paragraph*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{PitWallAgent}{5}{paragraph*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SemaphoreAgent}{5}{paragraph*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SafetyCarAgent}{5}{paragraph*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}DALI semantycs}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}CarAgent: FerrariAgent, McLarenAgent, ...}{5}{subsubsection.4.2.1}\protected@file@percent }
+\gdef \LT@ii {\LT@entry 
+    {1}{151.68144pt}\LT@entry 
+    {1}{292.806pt}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}PitWallAgent}{10}{subsubsection.4.2.2}\protected@file@percent }
 \gdef \LT@iii {\LT@entry 
-    {2}{55.38795pt}\LT@entry 
-    {2}{59.37596pt}\LT@entry 
-    {2}{69.81784pt}\LT@entry 
-    {1}{68.09593pt}}
+    {2}{147.99034pt}\LT@entry 
+    {2}{355.08128pt}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}SemaphoreAgent}{15}{subsubsection.4.2.3}\protected@file@percent }
 \gdef \LT@iv {\LT@entry 
+    {2}{86.25542pt}\LT@entry 
+    {2}{386.01135pt}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}SafetyCarAgent}{17}{subsubsection.4.2.4}\protected@file@percent }
+\gdef \LT@v {\LT@entry 
+    {2}{92.42891pt}\LT@entry 
+    {2}{307.31393pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Dynamic Agent System}{18}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Code Generation Pipeline}{18}{subsection.5.1}\protected@file@percent }
+\gdef \LT@vi {\LT@entry 
     {2}{132.31778pt}\LT@entry 
     {1}{262.0748pt}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Car Agents (Dynamic)}{5}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Dynamic Agent System}{5}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Code Generation Pipeline}{5}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Adding or Removing a Car}{5}{subsection.5.2}\protected@file@percent }
-\gdef \LT@v {\LT@entry 
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Adding or Removing a Car}{19}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Race Flow}{20}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Startup Sequence}{20}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Lap Round-Robin}{20}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Sequence Diagrams}{20}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Startup Sequence}{21}{subsection.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Startup sequence: all agents register with the semaphore, which runs the lights sequence and fires \texttt  {start\_race} to the first car.}}{21}{figure.2}\protected@file@percent }
+\newlabel{fig:seq_startup}{{2}{21}{Startup sequence: all agents register with the semaphore, which runs the lights sequence and fires \texttt {start\_race} to the first car}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Lap Round-Robin}{22}{subsection.7.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Lap round-robin: the pit wall dispatches \texttt  {lap\_go} tokens in order, accumulates lap times, and increments the lap counter after the last car.}}{22}{figure.3}\protected@file@percent }
+\newlabel{fig:seq_lap}{{3}{22}{Lap round-robin: the pit wall dispatches \texttt {lap\_go} tokens in order, accumulates lap times, and increments the lap counter after the last car}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Safety Car Deployment}{23}{subsection.7.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Safety car chain: pit wall deploys the safety car and notifies all cars; at the end of the lap the safety car is recalled and the green flag is broadcast.}}{23}{figure.4}\protected@file@percent }
+\newlabel{fig:seq_sc}{{4}{23}{Safety car chain: pit wall deploys the safety car and notifies all cars; at the end of the lap the safety car is recalled and the green flag is broadcast}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Engine Failure (DNF)}{24}{subsection.7.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Engine failure: a car's internal event notifies the pit wall, which sets the DNF time, retires the car, and immediately calls \texttt  {declare\_winner}.}}{24}{figure.5}\protected@file@percent }
+\newlabel{fig:seq_dnf}{{5}{24}{Engine failure: a car's internal event notifies the pit wall, which sets the DNF time, retires the car, and immediately calls \texttt {declare\_winner}}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Push Lap (Fastest-Lap Bonus)}{25}{subsection.7.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Push lap: a car's internal event fires at most once per lap and notifies the pit wall, which deducts $3\,\text  {s}$ from the car's accumulated time.}}{25}{figure.6}\protected@file@percent }
+\newlabel{fig:seq_push}{{6}{25}{Push lap: a car's internal event fires at most once per lap and notifies the pit wall, which deducts $3\,\text {s}$ from the car's accumulated time}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Timing System}{25}{section.8}\protected@file@percent }
+\gdef \LT@vii {\LT@entry 
     {2}{174.79897pt}\LT@entry 
     {2}{137.39142pt}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Race Flow}{6}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Startup Sequence}{6}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Lap Round-Robin}{6}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Timing System}{6}{section.7}\protected@file@percent }
-\gdef \LT@vi {\LT@entry 
-    {2}{129.46986pt}\LT@entry 
-    {1}{262.0748pt}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}DALI Event Types}{7}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}External Events}{7}{subsection.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Internal Events}{7}{subsection.8.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Generated internal events (per-car)}{7}{lstlisting.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Non-deterministic Track Events}{8}{subsection.8.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}random\_track\_event/0 in pitWallType}{8}{lstlisting.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Safety Car Chain}{8}{subsection.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}How to Run}{8}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Native (WSL / Linux)}{8}{subsection.9.1}\protected@file@percent }
-\gdef \LT@vii {\LT@entry 
+\@writefile{toc}{\contentsline {section}{\numberline {9}How to Run}{26}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Native (WSL / Linux)}{26}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Web Dashboard}{26}{subsection.9.2}\protected@file@percent }
+\gdef \LT@viii {\LT@entry 
     {2}{124.1198pt}\LT@entry 
     {1}{262.0748pt}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Web Dashboard}{9}{subsection.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Dashboard Controls}{9}{subsection.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10}Docker Deployment}{9}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Architecture}{9}{subsection.10.1}\protected@file@percent }
-\gdef \LT@viii {\LT@entry 
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Web dashboard --- Logs tab: agent panes with real-time output, control buttons and command bar.}}{27}{figure.7}\protected@file@percent }
+\newlabel{fig:ui_consoles}{{7}{27}{Web dashboard --- Logs tab: agent panes with real-time output, control buttons and command bar}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Dashboard Controls}{27}{subsection.9.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Final podium modal displayed at race end, showing driver positions and total accumulated times.}}{28}{figure.8}\protected@file@percent }
+\newlabel{fig:ui_podium}{{8}{28}{Final podium modal displayed at race end, showing driver positions and total accumulated times}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Circuit Tab}{28}{subsection.9.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Web dashboard --- Circuit tab: animated Catmull-Rom track with car positions, start lights and live leaderboard sidebar.}}{29}{figure.9}\protected@file@percent }
+\newlabel{fig:ui_circuit}{{9}{29}{Web dashboard --- Circuit tab: animated Catmull-Rom track with car positions, start lights and live leaderboard sidebar}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Docker Deployment}{29}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Architecture}{29}{subsection.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Quickstart}{29}{subsection.10.2}\protected@file@percent }
+\gdef \LT@ix {\LT@entry 
     {2}{80.08192pt}\LT@entry 
     {2}{153.99034pt}\LT@entry 
     {1}{205.16928pt}}
-\gdef \LT@ix {\LT@entry 
+\gdef \LT@x {\LT@entry 
     {2}{121.2394pt}\LT@entry 
     {1}{168.49014pt}\LT@entry 
     {1}{162.49014pt}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Quickstart}{10}{subsection.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Environment Variables}{10}{subsection.10.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}DALI Syntax Reference}{10}{section.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12}Shutdown}{11}{section.12}\protected@file@percent }
-\gdef \@abspage@last{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}Environment Variables}{30}{subsection.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}DALI Syntax Reference}{30}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Circuit Visualiser}{30}{section.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Overview}{30}{subsection.12.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}\texttt  {/api/race-state} Endpoint}{31}{subsection.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.3}Track Geometry}{31}{subsection.12.3}\protected@file@percent }
+\gdef \LT@xi {\LT@entry 
+    {1}{36.16623pt}\LT@entry 
+    {2}{85.66508pt}\LT@entry 
+    {1}{205.16928pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4}Animation State Machine}{32}{subsection.12.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1}Event Queue}{32}{subsubsection.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2}Chain Timing}{32}{subsubsection.12.4.2}\protected@file@percent }
+\gdef \LT@xii {\LT@entry 
+    {1}{82.54935pt}\LT@entry 
+    {2}{293.94478pt}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3}Animation Barrier and Synchronised Start}{33}{subsubsection.12.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.5}Start Lights Sequence}{33}{subsection.12.5}\protected@file@percent }
+\newlabel{sec:startlights}{{12.5}{33}{Start Lights Sequence}{subsection.12.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6}Leaderboard Gating}{33}{subsection.12.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Shutdown}{34}{section.13}\protected@file@percent }
+\gdef \@abspage@last{34}
