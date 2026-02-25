@@ -1,0 +1,31 @@
+\section{Project Structure}
+
+\begin{lstlisting}[language={}, numbers=none, frame=none, backgroundcolor=\color{white},basicstyle=\ttfamily\scriptsize]
+f1_race/
++-- agents.json           <- Single source of truth for car agents
++-- generate_agents.py    <- Generates DALI files from agents.json
++-- startmas.sh           <- Launch script (Linux/WSL)
++-- startmas.bat          <- Launch script (Windows)
++-- docker-compose.yml    <- Docker Compose (mas + ui containers)
++-- .env.example          <- Template for SICSTUS_PATH
++-- docker/
+|   +-- setup.sh          <- Auto-detects SICStus, writes .env
+|   +-- mas/Dockerfile
+|   \-- ui/Dockerfile
++-- ui/
+|   +-- dashboard.py      <- Flask backend + /api/race-state endpoint
+|   +-- run.sh            <- Creates venv + launches dashboard
+|   +-- requirements.txt
+|   \-- static/
+|       +-- index.html    <- Tab bar: Logs / Circuit
+|       +-- app.js        <- Dashboard bootstrap, polling, tab switching
+|       +-- circuit.js    <- Canvas circuit visualiser (Catmull-Rom, anim)
+|       \-- style.css     <- Layout, tab bar, circuit sidebar styles
++-- mas/
+|   +-- instances/        <- Agent instance files
+|   \-- types/            <- Agent type (behaviour) files
++-- conf/                 <- DALI communication configuration
++-- build/                <- Runtime binaries (auto-generated)
++-- work/                 <- Runtime working files (auto-generated)
+\-- log/                  <- Agent logs (auto-generated)
+\end{lstlisting}

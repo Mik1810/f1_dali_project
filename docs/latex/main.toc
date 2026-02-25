@@ -29,23 +29,12 @@
 \contentsline {subsection}{\numberline {7.5}Push Lap (Fastest-Lap Bonus)}{25}{subsection.7.5}%
 \contentsline {section}{\numberline {8}Timing System}{25}{section.8}%
 \contentsline {section}{\numberline {9}How to Run}{26}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Native (WSL / Linux)}{26}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Web Dashboard}{26}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Dashboard Controls}{27}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Circuit Tab}{28}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.1}Native (WSL / Linux) --- Not recommended}{26}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Web Dashboard --- Recommended}{26}{subsection.9.2}%
+\contentsline {subsubsection}{\numberline {9.2.1}Dashboard Controls}{27}{subsubsection.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.2}Circuit Tab}{28}{subsubsection.9.2.2}%
 \contentsline {section}{\numberline {10}Docker Deployment}{29}{section.10}%
 \contentsline {subsection}{\numberline {10.1}Architecture}{29}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Quickstart}{29}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.2}Quickstart}{30}{subsection.10.2}%
 \contentsline {subsection}{\numberline {10.3}Environment Variables}{30}{subsection.10.3}%
-\contentsline {section}{\numberline {11}DALI Syntax Reference}{30}{section.11}%
-\contentsline {section}{\numberline {12}Circuit Visualiser}{30}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Overview}{30}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}\texttt {/api/race-state} Endpoint}{31}{subsection.12.2}%
-\contentsline {subsection}{\numberline {12.3}Track Geometry}{31}{subsection.12.3}%
-\contentsline {subsection}{\numberline {12.4}Animation State Machine}{32}{subsection.12.4}%
-\contentsline {subsubsection}{\numberline {12.4.1}Event Queue}{32}{subsubsection.12.4.1}%
-\contentsline {subsubsection}{\numberline {12.4.2}Chain Timing}{32}{subsubsection.12.4.2}%
-\contentsline {subsubsection}{\numberline {12.4.3}Animation Barrier and Synchronised Start}{33}{subsubsection.12.4.3}%
-\contentsline {subsection}{\numberline {12.5}Start Lights Sequence}{33}{subsection.12.5}%
-\contentsline {subsection}{\numberline {12.6}Leaderboard Gating}{33}{subsection.12.6}%
-\contentsline {section}{\numberline {13}Shutdown}{34}{section.13}%
+\contentsline {section}{\numberline {11}Shutdown}{30}{section.11}%

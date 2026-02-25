@@ -1,0 +1,12 @@
+\section{Shutdown}
+
+\begin{lstlisting}[language=bash, numbers=none]
+# Stop the MAS
+tmux kill-session -t f1_race
+
+# Stop the Flask dashboard
+# Ctrl+C in the dashboard terminal
+
+# Stop Docker
+docker compose down
+\end{lstlisting}

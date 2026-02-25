@@ -1,0 +1,91 @@
+\section{Docker Deployment}
+
+\subsection{Architecture}
+
+The Docker Compose setup runs two containers that share a tmux socket volume, allowing
+the dashboard to read agent panes with zero modifications to the agent logic.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=4pt,
+              fill=codebg, draw=codeframe, line width=1pt,
+              text width=4.8cm, align=center, inner sep=10pt},
+  vol/.style={draw=gray!70, fill=gray!15, rounded corners=3pt,
+              text width=6.4cm, align=center, inner sep=6pt},
+  arr/.style={-{Stealth[length=5pt]}, thick, gray!60}
+]
+
+% --- mas container ---
+\node[box] (mas) at (0,0) {%
+  {\small\bfseries\ttfamily mas}~{\footnotesize(ubuntu:22.04)}\\[5pt]
+  {\footnotesize\ttfamily startmas.sh} {\footnotesize$\to$ tmux \texttt{f1\_race}}\\[3pt]
+  {\footnotesize SICStus mounted from host (ro)}%
+};
+
+% --- ui container ---
+\node[box, right=1.8cm of mas] (ui) {%
+  {\small\bfseries\ttfamily ui}~{\footnotesize(python:3.11-slim)}\\[5pt]
+  {\footnotesize\ttfamily dashboard.py}~{\footnotesize(Flask \texttt{:5000})}\\[3pt]
+  {\footnotesize reads tmux panes via volume}%
+};
+
+% --- shared volume ---
+\node[vol] (vol) at ($(mas.south)!0.5!(ui.south) + (0,-1.6)$) {%
+  {\footnotesize\ttfamily tmux\_sock}~{\footnotesize volume\quad\texttt{/tmp/tmux-shared}}%
+};
+
+% --- arrows ---
+\draw[arr] (mas.south) -- ++(0,-0.5) -| (vol.west);
+\draw[arr] (ui.south)  -- ++(0,-0.5) -| (vol.east);
+
+\end{tikzpicture}
+\caption{Docker Compose architecture: the \texttt{mas} and \texttt{ui} containers share a tmux socket volume.}
+\label{fig:docker_arch}
+\end{figure}
+
+\noindent
+\textbf{Startup order} (managed by Docker healthchecks):
+\begin{enumerate}[leftmargin=2em]
+  \item \texttt{ui} starts immediately and is healthy once \texttt{/api/config} responds.
+  \item \texttt{mas} waits for \texttt{ui} to be healthy, then runs \texttt{startmas.sh}.
+\end{enumerate}
+
+\subsection{Quickstart}
+As in the native approach, the configuration requires:
+\begin{enumerate}
+  \item Clone the DALI repo from \url{https://github.com/AAAI-DISIM-UnivAQ/DALI} and navigate to the \texttt{DALI/Examples} folder.
+  \item Clone the GitHub repo project from \url{https://github.com/Mik1810/f1_dali_project} under \texttt{Examples} folder.
+\end{enumerate}
+
+Then, execute the following commands:
+\begin{lstlisting}[language=bash, numbers=none]
+cd DALI/Examples/f1_race
+
+# 1. Auto-detect SICStus and write .env  (run once)
+bash docker/setup.sh
+
+# 2. Build and start
+docker compose up --build -d
+\end{lstlisting}
+
+The containers need a few seconds to start up and run the agents. Once ready, open \url{http://localhost:5000} in a browser to view the dashboard.
+
+\subsection{Environment Variables}
+The \texttt{mas} container needs the SICSTUS\_PATH environment variable
+ to locate the SICStus installation. This is set in 
+ \texttt{docker-compose.yml} and can be configured via a 
+ \texttt{.env} file in the project root. 
+This setup is done by the \texttt{docker/setup.sh} script, 
+which auto-detects the SICStus path on the host and writes it 
+to \texttt{.env}. In case of a different setup of the SICStus installation, 
+the variable can be manually set in \texttt{.env} as follows:
+
+\begin{longtable}{@{} l l p{7cm} @{}}
+\toprule
+\textbf{Variable} & \textbf{Default} & \textbf{Description} \\
+\midrule
+\endhead
+\texttt{SICSTUS\_PATH} & \texttt{/usr/local/sicstus4.6.0} & Host path to SICStus install, mounted read-only into the \texttt{mas} container \\
+\bottomrule
+\end{longtable}

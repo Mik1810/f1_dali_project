@@ -1,0 +1,66 @@
+\section{Dynamic Agent System}
+
+\subsection{Code Generation Pipeline}
+
+The \texttt{generate\_agents.py} script is the central point for generating all
+DALI files: it reads \texttt{agents.json} and automatically generates configuration
+files for each agent (cars, pit wall, semaphore, and safety car).
+
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language={}, numbers=none, frame=none, backgroundcolor=\color{white}, basicstyle=\ttfamily]
+agents.json
+    +-> generate_agents.py
+          +-- mas/instances/{id}.txt       (one per car)
+          +-- mas/types/{id}Car.txt        (one per car)
+          +-- mas/types/pitWallType.txt    (round-robin over all cars)
+          +-- mas/types/semaphoreType.txt  (waits N_cars + 2 ready)
+          \-- mas/types/safetyCarType.txt
+\end{lstlisting}
+\end{minipage}
+
+\noindent
+\texttt{generate\_agents.py} is invoked automatically at each MAS startup by
+\texttt{startmas.sh}. It has a smart way to regenerate files:
+
+\begin{longtable}{@{} l p{9cm} @{}}
+\toprule
+\textbf{Situation} & \textbf{Behaviour} \\
+\midrule
+\endhead
+\texttt{agents.json} unchanged & Skips regeneration --- no files written \\
+New car added                  & Full regeneration \\
+Car removed                    & Stale \texttt{\{id\}.txt} / \texttt{\{id\}Car.txt} deleted, then full regeneration \\
+\texttt{-{}-force} flag        & Always regenerates unconditionally \\
+\bottomrule
+\end{longtable}
+
+\subsection{Adding or Removing a Car}
+
+Edit \texttt{agents.json} and add a new entry to the \texttt{cars} array:
+
+\begin{lstlisting}[language={json}]
+{
+  "total_laps": 5,
+  "cars": [
+    { "id": "ferrari",   
+      "team": "Ferrari",  
+      "car_model": "SF-24",
+      "driver": "Leclerc", 
+      "label": "Ferrari SF-24",
+      "color": "#180505", 
+      "border": "#cc2200" 
+    },
+    { "id": "myclubcar", 
+      "team": "My Club",  
+      "car_model": "X1",
+      "driver": "Rossi",   
+      "label": "Club X1",
+      "color": "#001020", 
+      "border": "#00aaff" 
+    }
+  ]
+}
+\end{lstlisting}
+
+\noindent
+Then run \texttt{bash startmas.sh}. All DALI files and the dashboard update automatically.

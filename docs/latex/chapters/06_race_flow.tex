@@ -1,0 +1,37 @@
+% ================================================================
+\section{Race Flow}
+
+\subsection{Startup Sequence}
+
+\begin{enumerate}[leftmargin=2em]
+  \item Every agent (all cars, pit wall, safety car) sends a \texttt{ready} message to the
+        semaphore.
+  \item The semaphore waits until it has collected exactly $N_\text{cars} + 2$ ready signals.
+  \item The semaphore runs the F1 lights sequence (5 lights on, 1\,s each; 2\,s pause;
+        lights out) and sends \texttt{start\_race} to \texttt{Car[0]}.
+\end{enumerate}
+
+\subsection{Lap Round-Robin}
+
+Once the race starts, laps proceed in a strict round-robin over the ordered car list:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \texttt{Car[i]} receives \texttt{lap\_go\_\{id\}} from the pit wall.
+  \item \texttt{Car[i]} asserts its lap status and sends \texttt{lap\_done\_\{id\}} to the
+        pit wall.
+  \item The pit wall adds a random lap time, optionally fires a track event, and sends
+        \texttt{lap\_go\_\{id+1\}} to the next car.
+  \item After the last car of a lap completes:
+        \begin{itemize}
+          \item Lap counter increments.
+          \item Standings are printed.
+          \item If laps remain: \texttt{random\_track\_event} is rolled, then \texttt{lap\_go}
+                is sent to \texttt{Car[0]}.
+          \item If race complete: \texttt{declare\_winner} is called and \texttt{race\_end}
+                is broadcast.
+        \end{itemize}
+\end{enumerate}
+
+\noindent
+At any point a car's \emph{internal events} (\texttt{engine\_failureI} or
+\texttt{push\_lapI}) can fire autonomously and notify the pit wall.

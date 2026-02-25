@@ -11,8 +11,8 @@
 ### Times needed
 - [x] Fare UI con grafica con circuito e macchine
 - [x] Fare sequence diagrams
-- [ ] Fare documentazione
-- [ ] Ripulire le varie scritte degli eventi
+- [x] Fare documentazione
+- [x] Ripulire le varie scritte degli eventi
 - [x] Velocizzare lo startmas
 
 ### Bug

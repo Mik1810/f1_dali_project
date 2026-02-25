@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.9)  25 FEB 2026 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.9)  25 FEB 2026 21:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,32 +536,44 @@ Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
 \forest@copy@out=\write4
 \forest@externalize@max@outer@n=\count352
 \forest@externalize@inner@n=\count353
+) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen289
+\pgfarrowlength=\dimen290
+\pgfarrowwidth=\dimen291
+\pgfarrowlinewidth=\dimen292
+) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@layerbox@background=\box93
+\pgf@layerboxsaved@background=\box94
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen289
-\lightrulewidth=\dimen290
-\cmidrulewidth=\dimen291
-\belowrulesep=\dimen292
-\belowbottomsep=\dimen293
-\aboverulesep=\dimen294
-\abovetopsep=\dimen295
-\cmidrulesep=\dimen296
-\cmidrulekern=\dimen297
-\defaultaddspace=\dimen298
+\heavyrulewidth=\dimen293
+\lightrulewidth=\dimen294
+\cmidrulewidth=\dimen295
+\belowrulesep=\dimen296
+\belowbottomsep=\dimen297
+\aboverulesep=\dimen298
+\abovetopsep=\dimen299
+\cmidrulesep=\dimen300
+\cmidrulekern=\dimen301
+\defaultaddspace=\dimen302
 \@cmidla=\count354
 \@cmidlb=\count355
-\@aboverulesep=\dimen299
-\@belowrulesep=\dimen300
+\@aboverulesep=\dimen303
+\@belowrulesep=\dimen304
 \@thisruleclass=\count356
 \@lastruleclass=\count357
-\@thisrulewidth=\dimen301
+\@thisrulewidth=\dimen305
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen302
-\TX@old@table=\dimen303
-\TX@old@col=\dimen304
-\TX@target=\dimen305
-\TX@delta=\dimen306
+\TX@col@width=\dimen306
+\TX@old@table=\dimen307
+\TX@old@col=\dimen308
+\TX@target=\dimen309
+\TX@delta=\dimen310
 \TX@cols=\count358
 \TX@ftn=\toks57
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
@@ -571,12 +583,12 @@ Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
 \LTpre=\skip61
 \LTpost=\skip62
 \LTchunksize=\count359
-\LTcapwidth=\dimen307
-\LT@head=\box93
-\LT@firsthead=\box94
-\LT@foot=\box95
-\LT@lastfoot=\box96
-\LT@gbox=\box97
+\LTcapwidth=\dimen311
+\LT@head=\box95
+\LT@firsthead=\box96
+\LT@foot=\box97
+\LT@lastfoot=\box98
+\LT@gbox=\box99
 \LT@cols=\count360
 \LT@rows=\count361
 \c@LT@tables=\count362
@@ -584,24 +596,25 @@ Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
 \LT@p@ftn=\toks58
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
 \lst@mode=\count364
-\lst@gtempboxa=\box98
+\lst@gtempboxa=\box100
 \lst@token=\toks59
 \lst@length=\count365
-\lst@currlwidth=\dimen308
+\lst@currlwidth=\dimen312
 \lst@column=\count366
 \lst@pos=\count367
-\lst@lostspace=\dimen309
-\lst@width=\dimen310
+\lst@lostspace=\dimen313
+\lst@width=\dimen314
 \lst@newlines=\count368
 \lst@lineno=\count369
-\lst@maxwidth=\dimen311
+\lst@maxwidth=\dimen315
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
-) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+)
+(C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 \c@lstnumber=\count370
 \lst@skipnumbers=\count371
-\lst@framebox=\box99
+\lst@framebox=\box101
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
@@ -610,8 +623,7 @@ Package: listings 2024/09/23 1.10c (Carsten Heinz)
 Package: hyperref 2025-05-20 v7.01m Hypertext links for LaTeX
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
@@ -634,7 +646,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen312
+\@linkdim=\dimen316
 \Hy@linkcounter=\count373
 \Hy@pagecounter=\count374
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
@@ -664,15 +676,15 @@ Package hyperref Info: Bookmarks ON on input line 4424.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen313
+\XeTeXLinkMargin=\dimen317
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count377
-\Field@Width=\dimen314
-\Fld@charsize=\dimen315
+\Field@Width=\dimen318
+\Fld@charsize=\dimen319
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -704,24 +716,24 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 96.
+LaTeX Font Info:    ... okay on input line 96.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -760,13 +772,13 @@ LaTeX Font Info:    ... okay on input line 94.
 (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count383
-\scratchdimen=\dimen316
-\scratchbox=\box100
+\scratchdimen=\dimen320
+\scratchbox=\box102
 \nofMPsegments=\count384
 \nofMParguments=\count385
 \everyMPshowfont=\toks60
 \MPscratchCnt=\count386
-\MPscratchDim=\dimen317
+\MPscratchDim=\dimen321
 \MPnumerator=\count387
 \makeMPintoPDFobject=\count388
 \everyMPtoPDFconversion=\toks61
@@ -777,16 +789,16 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count389
-Package hyperref Info: Link coloring OFF on input line 94.
+Package hyperref Info: Link coloring OFF on input line 96.
  (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 99.
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 99.
  (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (main.toc
@@ -799,71 +811,71 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-[2]
+[2] (chapters/01_introduction.tex) (chapters/02_requirements.tex) (chapters/03_structure.tex
 
-[3]
-<../../imgs/06_class_diagram.png, id=256, 1806.75pt x 1173.38374pt>
+[3]) (chapters/04_agents.tex
+<../../imgs/06_class_diagram.png, id=206, 1806.75pt x 1173.38374pt>
 File: ../../imgs/06_class_diagram.png Graphic file (type png)
 <use ../../imgs/06_class_diagram.png>
-Package pdftex.def Info: ../../imgs/06_class_diagram.png  used on input line 187.
+Package pdftex.def Info: ../../imgs/06_class_diagram.png  used on input line 8.
 (pdftex.def)             Requested size: 455.24411pt x 295.65488pt.
 
 
 [4 <../../imgs/06_class_diagram.png>]
-Overfull \hbox (0.41904pt too wide) in paragraph at lines 235--240
+Overfull \hbox (0.41904pt too wide) in paragraph at lines 56--61
 \T1/cmtt/m/n/12 mas/types/ferrariCar.txt \T1/cmr/m/n/12 is gen-er-ated by \T1/cmtt/m/n/12 generate_-agents.py \T1/cmr/m/n/12 from the \T1/cmtt/m/n/12 agents.json
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--240
+Underfull \hbox (badness 10000) in paragraph at lines 56--61
 
  []
 
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 245.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 66.
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 262--265
+Underfull \hbox (badness 10000) in paragraph at lines 83--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--270
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--290
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
 
  []
 
 
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 320--323
+Underfull \hbox (badness 10000) in paragraph at lines 141--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--339
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--352
+Underfull \hbox (badness 10000) in paragraph at lines 171--173
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--366
+Underfull \hbox (badness 10000) in paragraph at lines 183--187
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 412--419
+Underfull \hbox (badness 10000) in paragraph at lines 233--240
 
  []
 
@@ -872,134 +884,134 @@ Underfull \hbox (badness 10000) in paragraph at lines 412--419
 [8]
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 508--512
+Underfull \hbox (badness 10000) in paragraph at lines 329--333
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 532--538
+Underfull \hbox (badness 10000) in paragraph at lines 353--359
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 541--542
+Underfull \hbox (badness 10000) in paragraph at lines 362--363
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 557--562
+Underfull \hbox (badness 10000) in paragraph at lines 378--383
 
  []
 
 
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 592--593
+Underfull \hbox (badness 10000) in paragraph at lines 413--414
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 615--622
+Underfull \hbox (badness 10000) in paragraph at lines 436--443
 
  []
 
 
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 643--644
+Underfull \hbox (badness 10000) in paragraph at lines 464--465
 
  []
 
 
 
 [12]
-Overfull \hbox (3.9192pt too wide) in paragraph at lines 675--678
+Overfull \hbox (3.9192pt too wide) in paragraph at lines 496--499
 []\T1/cmr/m/n/12 If the to-tal lap count equals 5, calls \T1/cmtt/m/n/12 declare_-winner\T1/cmr/m/n/12 ; oth-er-wise rolls an-other \T1/cmtt/m/n/12 random_-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 675--678
+Underfull \hbox (badness 10000) in paragraph at lines 496--499
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 700--704
+Underfull \hbox (badness 10000) in paragraph at lines 521--525
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--719
+Underfull \hbox (badness 10000) in paragraph at lines 537--540
 
  []
 
 
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 738--742
+Underfull \hbox (badness 10000) in paragraph at lines 559--563
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 759--763
+Underfull \hbox (badness 10000) in paragraph at lines 580--584
 
  []
 
 
-Overfull \hbox (47.82751pt too wide) in alignment at lines 766--770
+Overfull \hbox (47.82751pt too wide) in alignment at lines 587--591
  [] [] 
  []
 
 
-Overfull \hbox (47.82751pt too wide) in alignment at lines 770--796
+Overfull \hbox (47.82751pt too wide) in alignment at lines 591--617
  [] [] 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 801--806
+Underfull \hbox (badness 10000) in paragraph at lines 622--627
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 817--823
+Underfull \hbox (badness 10000) in paragraph at lines 638--644
 
  []
 
 
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 846--853
+Underfull \hbox (badness 10000) in paragraph at lines 667--674
 
  []
 
 
-Overfull \hbox (16.04381pt too wide) in paragraph at lines 878--882
+Overfull \hbox (16.04381pt too wide) in paragraph at lines 699--703
 []\T1/cmr/m/n/12 When the count reaches the thresh-old (here hard-coded to 4, gen-er-ated from \T1/cmtt/m/n/12 agents.json
  []
 
 
 
 [16]
-Overfull \hbox (17.02266pt too wide) in alignment at lines 886--890
+Overfull \hbox (17.02266pt too wide) in alignment at lines 707--711
  [] [] 
  []
 
 
-Overfull \hbox (17.02266pt too wide) in alignment at lines 890--902
+Overfull \hbox (17.02266pt too wide) in alignment at lines 711--723
  [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 907--912
+Underfull \hbox (badness 10000) in paragraph at lines 728--733
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 923--927
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 941--946
+Underfull \hbox (badness 10000) in paragraph at lines 762--767
 
  []
 
@@ -1007,157 +1019,120 @@ Underfull \hbox (badness 10000) in paragraph at lines 941--946
 
 [17]
 
-LaTeX Warning: Reference `sec:safety_car_chain' on page 18 undefined on input line 970.
+LaTeX Warning: Reference `sec:safety_car_chain' on page 18 undefined on input line 791.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 969--971
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 981--984
+Underfull \hbox (badness 10000) in paragraph at lines 790--792
 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 802--805
 
-[18]
+ []
 
-[19]
-Overfull \hbox (9.70923pt too wide) in paragraph at lines 1109--1112
+) (chapters/05_dynamic_agents.tex
+
+[18]) (chapters/06_race_flow.tex
+
+[19]) (chapters/07_sequence_diagrams.tex
+Overfull \hbox (9.70923pt too wide) in paragraph at lines 35--2
 \T1/cmr/m/n/12 At any point a car's \T1/cmr/m/it/12 in-ter-nal events \T1/cmr/m/n/12 (\T1/cmtt/m/n/12 engine_-failureI \T1/cmr/m/n/12 or \T1/cmtt/m/n/12 push_-lapI\T1/cmr/m/n/12 ) can fire au-tonomously
  []
 
-<../../imgs/01_startup.png, id=648, 1204.5pt x 823.075pt>
+<../../imgs/01_startup.png, id=598, 1204.5pt x 823.075pt>
 File: ../../imgs/01_startup.png Graphic file (type png)
 <use ../../imgs/01_startup.png>
-Package pdftex.def Info: ../../imgs/01_startup.png  used on input line 1123.
+Package pdftex.def Info: ../../imgs/01_startup.png  used on input line 11.
 (pdftex.def)             Requested size: 455.24411pt x 311.08882pt.
 
 
 [20]
-<../../imgs/02_lap_roundrobin.png, id=660, 1204.5pt x 1534.73375pt>
+<../../imgs/02_lap_roundrobin.png, id=610, 1204.5pt x 1534.73375pt>
 File: ../../imgs/02_lap_roundrobin.png Graphic file (type png)
 <use ../../imgs/02_lap_roundrobin.png>
-Package pdftex.def Info: ../../imgs/02_lap_roundrobin.png  used on input line 1133.
+Package pdftex.def Info: ../../imgs/02_lap_roundrobin.png  used on input line 21.
 (pdftex.def)             Requested size: 455.24411pt x 580.06686pt.
 
 
 [21 <../../imgs/01_startup.png>]
-<../../imgs/03_safety_car.png, id=667, 1204.5pt x 1365.1pt>
+<../../imgs/03_safety_car.png, id=617, 1204.5pt x 1365.1pt>
 File: ../../imgs/03_safety_car.png Graphic file (type png)
 <use ../../imgs/03_safety_car.png>
-Package pdftex.def Info: ../../imgs/03_safety_car.png  used on input line 1143.
+Package pdftex.def Info: ../../imgs/03_safety_car.png  used on input line 31.
 (pdftex.def)             Requested size: 455.24411pt x 515.95221pt.
 
 
 [22 <../../imgs/02_lap_roundrobin.png>]
-<../../imgs/04_engine_failure.png, id=674, 1204.5pt x 1284.8pt>
+<../../imgs/04_engine_failure.png, id=624, 1204.5pt x 1284.8pt>
 File: ../../imgs/04_engine_failure.png Graphic file (type png)
 <use ../../imgs/04_engine_failure.png>
-Package pdftex.def Info: ../../imgs/04_engine_failure.png  used on input line 1153.
+Package pdftex.def Info: ../../imgs/04_engine_failure.png  used on input line 41.
 (pdftex.def)             Requested size: 455.24411pt x 485.60208pt.
 
 
 [23 <../../imgs/03_safety_car.png>]
-<../../imgs/05_push_lap.png, id=681, 1204.5pt x 1359.0775pt>
+<../../imgs/05_push_lap.png, id=631, 1204.5pt x 1359.0775pt>
 File: ../../imgs/05_push_lap.png Graphic file (type png)
 <use ../../imgs/05_push_lap.png>
-Package pdftex.def Info: ../../imgs/05_push_lap.png  used on input line 1163.
+Package pdftex.def Info: ../../imgs/05_push_lap.png  used on input line 51.
 (pdftex.def)             Requested size: 455.24411pt x 513.67596pt.
-
+) (chapters/08_timing.tex
 
 [24 <../../imgs/04_engine_failure.png>]
 
-[25 <../../imgs/05_push_lap.png>] (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+[25 <../../imgs/05_push_lap.png>]) (chapters/09_how_to_run.tex
+Overfull \hbox (16.22688pt too wide) in paragraph at lines 7--8
+[]\T1/cmr/m/n/12 Clone the GitHub repo project from []$\T1/cmtt/m/n/12 https : / / github . com / Mik1810 / f1 _ dali _ project$[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+(C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (C:\Users\micha\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
-<../../imgs/07_consoles.png, id=696, 1927.2pt x 1084.05pt>
+Underfull \hbox (badness 10000) in paragraph at lines 26--29
+
+ []
+
+<../../imgs/07_consoles.png, id=648, 1927.2pt x 1084.05pt>
 File: ../../imgs/07_consoles.png Graphic file (type png)
 <use ../../imgs/07_consoles.png>
-Package pdftex.def Info: ../../imgs/07_consoles.png  used on input line 1226.
+Package pdftex.def Info: ../../imgs/07_consoles.png  used on input line 47.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
 
 
 [26]
-<../../imgs/08_podium.png, id=711, 1927.2pt x 1084.05pt>
+<../../imgs/08_podium.png, id=665, 1927.2pt x 1084.05pt>
 File: ../../imgs/08_podium.png Graphic file (type png)
 <use ../../imgs/08_podium.png>
-Package pdftex.def Info: ../../imgs/08_podium.png  used on input line 1250.
+Package pdftex.def Info: ../../imgs/08_podium.png  used on input line 71.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
 
 
 [27 <../../imgs/07_consoles.png>]
-<../../imgs/09_circuit.png, id=719, 1927.2pt x 1084.05pt>
+<../../imgs/09_circuit.png, id=673, 1927.2pt x 1084.05pt>
 File: ../../imgs/09_circuit.png Graphic file (type png)
 <use ../../imgs/09_circuit.png>
-Package pdftex.def Info: ../../imgs/09_circuit.png  used on input line 1289.
+Package pdftex.def Info: ../../imgs/09_circuit.png  used on input line 110.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-
+) (chapters/10_docker.tex
 
 [28 <../../imgs/08_podium.png>]
 
 [29 <../../imgs/09_circuit.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1354--1354
-[]|\T1/cmtt/m/n/12 start_-raceE:>
+Overfull \hbox (16.22688pt too wide) in paragraph at lines 58--59
+[]\T1/cmr/m/n/12 Clone the GitHub repo project from []$\T1/cmtt/m/n/12 https : / / github . com / Mik1810 / f1 _ dali _ project$[]
  []
 
+) (chapters/11_shutdown.tex)
 
-Underfull \hbox (badness 10000) in paragraph at lines 1355--1355
-[]|\T1/cmtt/m/n/12 push_-lap_-ferrariI:>
- []
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 1356--1356
-[]|\T1/cmr/m/n/12 Condition for in-ter-nal event
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1356--1356
-[]|\T1/cmtt/m/n/12 push_-lap_-ferrari :-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1357--1357
-[]|\T1/cmr/m/n/12 Send mes-sage (top-level
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1357--1357
-[]|\T1/cmtt/m/n/12 messageA(pitwall, lap_-
- []
-
-
-Underfull \hbox (badness 8056) in paragraph at lines 1358--1358
-[]|\T1/cmr/m/n/12 Send mes-sage (safe in-side
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1358--1358
-[]|\T1/cmtt/m/n/12 send_-m(safety_-car,
- []
-
-
-
-[30]
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1385.
-
-
-[31]
-Overfull \hbox (26.36159pt too wide) in paragraph at lines 1469--1474
-\T1/cmr/m/n/12 The queue is only ever \T1/cmr/m/it/12 ap-pended to \T1/cmr/m/n/12 --- never re-wound. On each API poll, \T1/cmtt/m/n/12 updateCarAnim(data)
- []
-
-
-
-[32]
-
-[33]
-
-[34] (main.aux)
+[30] (main.aux)
  ***********
 LaTeX2e <2025-06-01>
 L3 programming layer <2025-05-26>
@@ -1166,30 +1141,21 @@ L3 programming layer <2025-05-26>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 570EDECC99F5F94D0F028D480D4AAEE4;6528
-(rerunfilecheck)             After:  C8AA40710CE57EBD4535051BA70E051A;6644.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 555D964A2E92BF81BB079694F715AB9F;5087.
  ) 
 Here is how much of TeX's memory you used:
- 35392 strings out of 468225
- 750529 string characters out of 5432974
- 1632702 words of memory out of 5000000
- 62917 multiletter control sequences out of 15000+600000
- 645454 words of font info for 88 fonts, out of 8000000 for 9000
+ 35878 strings out of 468225
+ 766813 string characters out of 5432974
+ 1646916 words of memory out of 5000000
+ 63423 multiletter control sequences out of 15000+600000
+ 646862 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,9n,101p,1670b,2033s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on c:/Users\micha\Desktop\Dali_project\DALI\Examples\f1_race\docs\latex\main.pdf (34 pages, 1373809 bytes).
+ 98i,9n,101p,1666b,1996s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\micha\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/micha/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on c:/Users\micha\Desktop\Dali_project\DALI\Examples\f1_race\docs\latex\main.pdf (30 pages, 1319681 bytes).
 PDF statistics:
- 1660 PDF objects out of 1728 (max. 8388607)
- 501 named destinations out of 1000 (max. 500000)
- 418 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1533 PDF objects out of 1728 (max. 8388607)
+ 433 named destinations out of 1000 (max. 500000)
+ 338 words of extra memory for PDF output out of 10000 (max. 10000000)
 

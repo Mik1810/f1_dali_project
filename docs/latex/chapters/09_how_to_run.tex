@@ -1,0 +1,113 @@
+\section{How to Run}
+
+\subsection{Native (WSL / Linux) --- Not recommended}
+The configurations can be a little messy because requires the SICSTus interpreter and the DALI logic, but here are presente a step-by-step guide:
+\begin{enumerate}
+  \item Clone the DALI repo from \url{https://github.com/AAAI-DISIM-UnivAQ/DALI} and navigate to the \texttt{DALI/Examples} folder.
+  \item Clone the GitHub repo project from \url{https://github.com/Mik1810/f1_dali_project} under \texttt{Examples} folder.
+\end{enumerate}
+Then, execute the following commands in the terminal:\\
+
+\begin{lstlisting}[language=bash, numbers=none]
+cd DALI/Examples/f1_race
+bash startmas.sh
+\end{lstlisting}
+
+\texttt{startmas.sh} performs the following steps:
+\begin{enumerate}[leftmargin=2em]
+  \item Kills any stale SICStus / tmux processes on port 3010.
+  \item Runs \texttt{generate\_agents.py} to sync DALI files with \texttt{agents.json}.
+  \item Launches all agents inside a single \texttt{tmux}
+        session named \texttt{f1\_race}.
+\end{enumerate}
+
+\subsection{Web Dashboard --- Recommended}
+
+If you want to use the web dashboard, which provides real-time 
+logs and an animated circuit view, run the following commands
+ in terminal:\\
+
+\begin{lstlisting}[language=bash, numbers=none]
+cd f1_race
+bash ui/run.sh
+\end{lstlisting}
+
+\noindent
+\texttt{run.sh} creates a local Python venv (\texttt{ui/.venv}) on the first run and
+installs Flask automatically. Subsequent launches or skip \texttt{pip install} via a stamp
+file (\texttt{.venv/.installed\_stamp}) and start it.
+
+Open \url{http://localhost:5000} in a browser. The dashboard shows all agent panes
+side-by-side with real-time auto-scrolling. If \texttt{agents.json} is modified while the
+dashboard is open, it auto-detects the change within 5\,seconds and rebuilds the grid
+without a page reload.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../../imgs/07_consoles.png}
+  \caption{Web dashboard --- Logs tab: agent panes with real-time output, control buttons and command bar.}
+  \label{fig:ui_consoles}
+\end{figure}
+
+\subsubsection{Dashboard Controls}
+
+\begin{longtable}{@{} l p{9cm} @{}}
+\toprule
+\textbf{UI element} & \textbf{Function} \\
+\midrule
+\endhead
+\textbf{Restart MAS}    & Kills SICStus + tmux session, reruns \texttt{startmas.sh} \\
+\textbf{Deploy SC}      & Sends deploy message to safety car immediately \\
+\textbf{Recall SC}      & Recalls the safety car \\
+Agent / Command bar     & Sends an arbitrary Prolog command to any agent pane \\
+Pin button ($\downarrow$) & Toggles auto-scroll for that pane \\
+Clear button ($\times$)  & Clears pane output \\
+Minimise button ($-$)   & Minimises pane to tray \\
+\bottomrule
+\end{longtable}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../../imgs/08_podium.png}
+  \caption{Final podium modal displayed at race end, showing driver positions and total accumulated times.}
+  \label{fig:ui_podium}
+\end{figure}
+
+\subsubsection{Circuit Tab}
+
+The dashboard exposes two tabs selectable via the tab bar at the top of the page:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Logs} --- the default view showing all agent panes side-by-side with
+        real-time output.
+  \item \textbf{Circuit} --- an animated canvas visualisation of the race circuit.
+\end{itemize}
+
+\noindent
+Clicking a tab label switches the view instantly; no page reload is required. The
+\texttt{Logs} tab remains fully active in the background (polling continues) while
+the \texttt{Circuit} tab is open, so no agent output is ever lost.
+
+The \textbf{Circuit tab} renders a Catmull-Rom spline track on an HTML5 Canvas and
+animates each car along it in proportional time. Key features include:
+
+\begin{itemize}[leftmargin=2em]
+  \item \textbf{Start lights sequence} --- five red lights illuminate one per second
+        before going out at race start, matching the semaphore agent's timing.
+  \item \textbf{Car tokens} --- each car is drawn as a coloured dot with its team
+        border glow, a lap-count badge, and a driver label. Position on track reflects
+        the real fraction of the lap elapsed.
+  \item \textbf{Pit-stop indicator} --- a car entering the pit lane is shown as
+        stationary in the pit area for the duration of the stop.
+  \item \textbf{Live sidebar} --- an always-visible leaderboard lists cars in current
+        race order with their accumulated times, updated after every lap.
+  \item \textbf{Final podium} --- once the race ends and all animations have played
+        out, a modal overlay shows the final standings with positions and total times.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../../imgs/09_circuit.png}
+  \caption{Web dashboard --- Circuit tab: animated Catmull-Rom track with car positions, start lights and live leaderboard sidebar.}
+  \label{fig:ui_circuit}
+\end{figure}

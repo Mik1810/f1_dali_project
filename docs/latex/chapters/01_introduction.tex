@@ -1,0 +1,23 @@
+% ================================================================
+\section{Introduction}
+
+\subsection{DALI Overview}
+DALI (Dynamic Agent Logic framework for Interaction) is a logic-based multi-agent system
+built on top of SICStus Prolog. Each agent is defined by a set of \emph{external events}
+(reactions to incoming messages), \emph{internal events} (proactive behaviours triggered by
+conditions), and standard Prolog clauses for knowledge representation and reasoning.
+
+DALI agents run as independent SICStus processes that communicate via a shared message
+server (\texttt{LINDA}) running on a configurable TCP port.
+
+\subsection{Project Goals}
+The F1 Race simulation was developed with the following goals in mind:
+\begin{itemize}[leftmargin=2em]
+  \item Demonstrate the \emph{reactive} and \emph{proactive} capabilities of DALI agents in
+        a realistic, event-driven scenario.
+  \item Show how a fully \emph{dynamic} agent roster can be maintained through code
+        generation, avoiding any hardcoded agent names in the DALI source.
+  \item Provide a real-time monitoring interface that reflects agent activity without
+        modifying the agent logic.
+  \item Package the entire stack as a reproducible \textbf{Docker Compose} application.
+\end{itemize}

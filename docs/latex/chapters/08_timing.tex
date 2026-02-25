@@ -1,0 +1,18 @@
+% ================================================================
+\section{Timing System}
+
+The winner is the car with the lowest total accumulated time. Time is measured in seconds.
+
+\begin{longtable}{@{} l r @{}}
+\toprule
+\textbf{Event} & \textbf{Time change} \\
+\midrule
+\endhead
+Each lap      & $+\,\texttt{random}(60,\,90)$ seconds \\
+Pit stop      & $+\,25\,\text{s}$ \\
+Safety car (20\,\% per lap) & $+\,10\,\text{s}$ to \emph{all} cars \\
+Heavy rain (20\,\% per lap) & $+\,5\,\text{s}$ to \emph{all} cars \\
+Push lap (internal event, $\approx$10\,\%) & $-\,3\,\text{s}$ \\
+Engine failure / DNF ($\approx$0.2\,\%) & $\texttt{time} = 9999\,\text{s}$ (race ends) \\
+\bottomrule
+\end{longtable}
