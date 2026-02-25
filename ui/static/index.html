@@ -17,9 +17,37 @@
   <button class="hbtn r" onclick="restartMas()" title="pkill sicstus + restart via startmas.sh">&#8635; Restart MAS</button>
 </header>
 
-<div class="grid" id="grid"></div>
+<div class="tab-bar">
+  <button class="tab-btn active" id="tab-btn-logs"    onclick="switchTab('logs')">📋 Logs</button>
+  <button class="tab-btn"        id="tab-btn-circuit" onclick="switchTab('circuit')">🏎 Circuit</button>
+</div>
 
-<div id="minimized-tray"></div>
+<div id="view-logs">
+  <div class="grid" id="grid"></div>
+  <div id="minimized-tray"></div>
+</div>
+
+<div id="view-circuit" style="display:none">
+  <div class="circuit-layout">
+    <div class="circuit-track-wrap">
+      <canvas id="track-canvas"></canvas>
+    </div>
+    <div class="circuit-sidebar" id="circuit-sidebar">
+      <div class="csb-section">
+        <div class="csb-title">Race Status</div>
+        <div id="csb-status">Waiting for race&hellip;</div>
+      </div>
+      <div class="csb-section">
+        <div class="csb-title">Standings</div>
+        <div id="csb-standings"></div>
+      </div>
+      <div class="csb-section">
+        <div class="csb-title">Live Events</div>
+        <div id="csb-events"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="cmdbar">
   <label>Agent:</label>
@@ -47,5 +75,6 @@
 </div>
 
 <script src="/static/app.js"></script>
+<script src="/static/circuit.js"></script>
 </body>
 </html>

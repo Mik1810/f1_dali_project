@@ -185,6 +185,149 @@ def api_results():
     return jsonify({"ready": bool(results), "results": results})
 
 
+@app.route("/api/race-state")
+def api_race_state():
+    """Parse pitwall + car panes to build a structured race state for the circuit view.
+
+    Returns:
+    {
+      race_started, race_over, safety_car,
+      current_lap, total_laps,
+      cars: {
+        <id>: { laps_completed, lap_times, pit_stops, dnf,
+                total_time, position, in_pit,
+                label, driver, team, color, border }
+      }
+    }
+    """
+    pitwall_text = capture_pane("pitwall")
+
+    # Load car configs + total_laps from agents.json
+    agents_file = os.path.normpath(
+        os.path.join(os.path.dirname(__file__), "..", "agents.json")
+    )
+    try:
+        with open(agents_file, encoding="utf-8") as f:
+            cfg = json.load(f)
+        total_laps = cfg.get("total_laps", 5)
+        cars_cfg   = {c["id"]: c for c in cfg.get("cars", [])}
+    except Exception:
+        total_laps = 5
+        cars_cfg   = {}
+
+    state: dict = {
+        "race_started": False,
+        "race_over":    False,
+        "safety_car":   False,
+        "current_lap":  0,
+        "total_laps":   total_laps,
+        "cars":         {},
+    }
+
+    # Pane not available yet
+    if not pitwall_text or pitwall_text.startswith("[pane"):
+        return jsonify(state)
+
+    lines = pitwall_text.split("\n")
+
+    # Race started? (first sign is any car lap time appearing in pitwall)
+    if re.search(r'\[PitWall\] \w+ lap: \d+s', pitwall_text, re.IGNORECASE) or \
+       re.search(r'\[PitWall\] Lap \d', pitwall_text):
+        state["race_started"] = True
+
+    # Race over?
+    state["race_over"] = "=== FINAL RESULTS ===" in pitwall_text
+
+    # Safety car — track last occurrence in order
+    sc = False
+    for line in lines:
+        if "SAFETY CAR deployed" in line:
+            sc = True
+        elif "GREEN FLAG" in line:
+            sc = False
+    state["safety_car"] = sc
+
+    # Current lap (last "[PitWall] Lap N / M")
+    lap_matches = list(re.finditer(r'\[PitWall\] Lap (\d+) / (\d+)', pitwall_text))
+    if lap_matches:
+        m = lap_matches[-1]
+        state["current_lap"] = int(m.group(1))
+        state["total_laps"]  = int(m.group(2))
+
+    # Per-car data
+    for car_id, car_meta in cars_cfg.items():
+        cap = car_id.capitalize()
+
+        # Lap times list
+        lap_times = [
+            int(t) for t in re.findall(
+                rf'\[PitWall\] {re.escape(cap)} lap: (\d+)s',
+                pitwall_text, re.IGNORECASE,
+            )
+        ]
+        # Pit stops
+        pit_count = len(re.findall(
+            rf'\[PitWall\] {re.escape(cap)} pit stop',
+            pitwall_text, re.IGNORECASE,
+        ))
+        # DNF
+        dnf = bool(re.search(
+            rf'\[PitWall\] {re.escape(cap)} DNF',
+            pitwall_text, re.IGNORECASE,
+        ))
+
+        # Last known race position from standings block
+        pos = None
+        for m in re.finditer(r'\[PitWall\] P(\d+): (\w+) -- ', pitwall_text):
+            if m.group(2).lower() == car_id.lower():
+                pos = int(m.group(1))
+
+        # Is car currently in pit?
+        in_pit = False
+        car_pane = capture_pane(car_id)
+        if car_pane and not car_pane.startswith("[pane"):
+            for line in reversed(car_pane.split("\n")):
+                if "BOX BOX BOX" in line:
+                    in_pit = True
+                    break
+                if any(kw in line for kw in
+                       ["LIGHTS OUT", "power", "pushing", "flat out",
+                        "PUSH LAP", "On the power"]):
+                    break
+
+        state["cars"][car_id] = {
+            "laps_completed": len(lap_times),
+            "lap_times":      lap_times,
+            "pit_stops":      pit_count,
+            "dnf":            dnf,
+            "total_time":     sum(lap_times),
+            "position":       pos,
+            "in_pit":         in_pit,
+            "label":          car_meta.get("label",  car_id),
+            "driver":         car_meta.get("driver", car_id),
+            "team":           car_meta.get("team",   car_id),
+            "color":          car_meta.get("color",  "#111111"),
+            "border":         car_meta.get("border", "#888888"),
+        }
+
+    # Recent notable events (last 8 interesting lines from pitwall pane)
+    _EVENT_KEYWORDS = [
+        "SAFETY CAR", "GREEN FLAG", "LIGHTS OUT", "FINAL RESULTS",
+        "CHEQUERED FLAG", "DNF", "pit stop", "lap:", "Lap ", "RAIN",
+        "engine failure", "FASTEST LAP", "push lap", "STANDINGS",
+    ]
+    events: list = []
+    for line in reversed(lines):
+        stripped = line.strip()
+        if stripped and any(kw.lower() in stripped.lower() for kw in _EVENT_KEYWORDS):
+            events.append(stripped)
+        if len(events) >= 8:
+            break
+    state["recent_events"] = list(reversed(events))
+
+    return jsonify(state)
+
+
 @app.route("/api/send", methods=["POST"])
 def api_send():
     data = request.get_json()

@@ -170,7 +170,8 @@ async function restartMas() {
   // already cleared it while we were waiting for the response.
   clearAll();
   closeLeaderboard();
-  lbShown = false;  // new race — allow results modal to appear again
+  lbShown = false;          // new race — allow results modal to appear again
+  _pendingLbResults = null; // discard any held leaderboard from previous race
   restarting = true;
   showOverlay('Waiting for agents…', 'LINDA server starting on port 3010');
 
@@ -278,14 +279,40 @@ function poll() {
 
 /* ── Leaderboard ─────────────────────────────────────── */
 const MEDALS = ['\uD83E\uDD47', '\uD83E\uDD48', '\uD83E\uDD49'];
-let lbShown = false;  // true once modal has been shown this race; reset on restart
+let lbShown       = false; // true once modal has been shown this race; reset on restart
+let _pendingLbResults = null; // results held while circuit animation is still running
 
 function pollResults() {
   fetch('/api/results')
     .then(r => r.json())
-    .then(data => { if (data.ready && !lbShown) { lbShown = true; renderLeaderboard(data.results); } })
+    .then(data => {
+      if (!data.ready || lbShown) return;
+      // On the circuit tab, hold the leaderboard until the animation queue
+      // has fully drained so the modal doesn't pop up mid-race.
+      if (_activeTab === 'circuit' &&
+          typeof circuitQueueDrained === 'function' &&
+          !circuitQueueDrained()) {
+        _pendingLbResults = data.results; // save for when the queue empties
+        return;
+      }
+      lbShown = true;
+      _pendingLbResults = null;
+      renderLeaderboard(data.results);
+    })
     .catch(() => {});
 }
+
+// Check every 500 ms whether a pending leaderboard can now be shown.
+setInterval(() => {
+  if (!_pendingLbResults || lbShown) return;
+  if (_activeTab !== 'circuit' ||
+      typeof circuitQueueDrained !== 'function' ||
+      circuitQueueDrained()) {
+    lbShown = true;
+    renderLeaderboard(_pendingLbResults);
+    _pendingLbResults = null;
+  }
+}, 500);
 
 function renderLeaderboard(results) {
   if (!results.length) return;
@@ -340,3 +367,27 @@ function doSend() {
   post(w, c);
   document.getElementById('cmd').value = '';
 }
+
+/* ── Tab switching ────────────────────────────────────── */
+let _activeTab = 'logs';
+
+function switchTab(name) {
+  if (name === _activeTab) return;
+  _activeTab = name;
+
+  const tabs  = ['logs', 'circuit'];
+  tabs.forEach(t => {
+    const view = document.getElementById('view-' + t);
+    const btn  = document.getElementById('tab-btn-' + t);
+    const show = (t === name);
+    if (view) view.style.display = show ? '' : 'none';
+    if (btn)  btn.classList.toggle('active', show);
+  });
+
+  if (name === 'circuit') {
+    if (typeof circuitInit === 'function') circuitInit();
+  } else {
+    if (typeof circuitDestroy === 'function') circuitDestroy();
+  }
+}
+
