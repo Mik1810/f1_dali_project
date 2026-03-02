@@ -19,7 +19,6 @@ import time
 import threading
 from flask import Flask, jsonify, request, send_from_directory
 
-# ── Restart logger ────────────────────────────────────────────────────────────
 _RLOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                           "..", "log", "restart.log")
 _RLOG_FILE = os.path.normpath(_RLOG_FILE)
@@ -36,9 +35,7 @@ def _rlog(msg: str) -> None:
             _f.write(line + "\n")
     except Exception:
         pass
-# ─────────────────────────────────────────────────────────────────────────────
 
-# ── Config ────────────────────────────────────────────────────────────────────
 
 SESSION = "f1_race"
 
@@ -83,7 +80,6 @@ PANES = _FIXED_PANES_BEFORE + _load_car_panes() + _FIXED_PANES_AFTER
 
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
-# ── tmux helpers ──────────────────────────────────────────────────────────────
 
 def capture_pane(window_id: str) -> str:
     """Read the last ~400 lines from a tmux pane (plain text, no ANSI codes)."""
@@ -111,7 +107,6 @@ def send_keys(window_id: str, cmd: str) -> None:
     )
 
 
-# ── Flask app ─────────────────────────────────────────────────────────────────
 
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="/static")
 
@@ -340,7 +335,7 @@ def api_race_state():
     # Algorithm (forward scan):
     #   - "[PitWall] Lap N / M" marks N laps as officially complete.
     #     After seeing it, the in-progress lap becomes N+1, so any event
-    #     that follows must wait for lap N+1 to animate → reveal_lap = N+1.
+    #     that follows must wait for lap N+1 to animate -> reveal_lap = N+1.
     #   - Events appearing before the first lap marker belong to lap 1.
     #   - Events after the last lap marker (FINAL RESULTS, CHEQUERED FLAG…)
     #     get reveal_lap = total_laps + 1 so the circuitQueueDrained() gate
