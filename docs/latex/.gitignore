@@ -1,0 +1,11 @@
+# LaTeX compilation outputs
+*.aux
+*.out
+*.toc
+*.synctex.gz
+*.log
+
+# Directories
+_minted-*/
+.latexmk/
+%OUTDIR%

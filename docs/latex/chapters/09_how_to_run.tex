@@ -4,7 +4,7 @@
 The configurations can be a little messy because requires the SICStus interpreter and the DALI logic, but here are presente a step-by-step guide:
 \begin{enumerate}
   \item Clone the DALI repo from \url{https://github.com/AAAI-DISIM-UnivAQ/DALI} and navigate to the \texttt{DALI/Examples} folder.
-  \item Clone the GitHub repo project from \url{https://github.com/Mik1810/f1_dali_project} under \texttt{Examples} folder.
+  \item Clone the GitHub repo project from \url{https://github.com/Mik1810/f1_race} under \texttt{Examples} folder.
 \end{enumerate}
 Then, execute the following commands in the terminal:\\
 
@@ -15,7 +15,7 @@ bash startmas.sh
 
 \texttt{startmas.sh} performs the following steps:
 \begin{enumerate}[leftmargin=2em]
-  \item Kills any stale SICStus / tmux processes on port 3010.
+  \item Kills any stale SICStus / tmux processes on port 3010-3019.
   \item Runs \texttt{generate\_agents.py} to sync DALI files with \texttt{agents.json}.
   \item Launches all agents inside a single \texttt{tmux}
         session named \texttt{f1\_race}.
