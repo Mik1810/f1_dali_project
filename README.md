@@ -4,185 +4,7 @@ A Formula 1 race simulation built with the **DALI Multi-Agent System** framework
 Car agents are **dynamically generated** from a single `agents.json` config file — no hardcoded agents in the codebase.  
 The **Pit Wall** coordinates the race flow and generates **probabilistic events** (safety car, rain) automatically.
 
----
-
-## Agents
-
-The car roster is defined in `agents.json`. The fixed infrastructure agents never change:
-
-| Agent | Instance | Type | Role |
-|-------|----------|------|------|
-| `semaphore` | `mas/instances/semaphore.txt` | `semaphoreType` | Raccoglie i segnali `ready`, esegue la sequenza luci F1 e avvia la gara |
-| *(car agents)* | `mas/instances/{id}.txt` | `{id}Car` | Generati da `agents.json` via `generate_agents.py` |
-| `pitwall` | `mas/instances/pitwall.txt` | `pitWallType` | Muretto box, coordinatore e generatore di eventi casuali |
-| `safety_car` | `mas/instances/safety_car.txt` | `safetyCarType` | Safety car |
-
-### Default car roster (`agents.json`)
-
-| ID | Team | Driver | Car |
-|----|------|--------|-----|
-| `ferrari` | Ferrari | Leclerc | SF-24 |
-| `mclaren` | McLaren | Norris | MCL38 |
-| `redbull` | Red Bull | Verstappen | RB20 |
-| `mercedes` | Mercedes | Hamilton | W15 |
-
-> Add or remove cars by editing `agents.json` only — everything else is generated automatically.
-
-### Race flow (N laps, round-robin)
-
-```
-All agents ──send_message(ready)──► Semaphore
-                                        │ (waits N_cars + 2 ready signals)
-                                        │ send_message(start_race)
-                                        ▼
-                                    Car[0]  ── lap_done_[0] ──►  PitWall
-                                                                      │ rolls random lap time + random_track_event
-                                                                      │ lap_go_[1]
-                                                                      ▼
-                                                                  Car[1]  ── lap_done_[1] ──►  PitWall
-                                                                                                    │ ...
-                                                                                                    ▼
-                                                                                                Car[N-1] ── lap_done_[N-1] ──► PitWall
-                                                                                                                                    │ increments lap counter
-                                                                                                                                    │ prints standings
-                                                                                                                                    │ if lap < total: random_track_event → lap_go_[0]
-                                                                                                                                    │ if lap = total: declare_winner
-                                                                                                                                    ▼
-                                                                                                                                ...repeat total_laps times...
-```
-
-At any point a car's **internal event** (`engine_failureI` or `push_lapI`) can fire autonomously and send a message to PitWall.
-
----
-
-### Timing system (lower total time = winner)
-
-| Event | Time change |
-|---|---|
-| Each lap | `+ random(60..90)` seconds |
-| Pit stop | `+ 25s` |
-| Safety car (20% chance per lap) | `+ 10s` to all cars |
-| Heavy rain (20% chance per lap) | `+ 5s` to all cars |
-| Push lap (internal event, ~10% chance) | `- 3s` |
-| Engine failure / DNF (internal event, ~0.2% chance) | `time = 9999s` → race ends |
-
----
-
-### DALI event types used
-
-**External events** (`nameE:>`) — reactive, triggered by a message from another agent:
-- `start_raceE` — lights out signal from semaphore; asserts `race_started`, triggers first lap
-- `lap_go_{id}E` — pitwall tells a car to start its next lap
-- `lap_done_{id}E` — car finishes a lap; pitwall adds random lap time, rolls track event
-- `pit_done_{id}E` — car finishes pit stop; pitwall adds +25s
-- `{id}_engine_failureE` — DNF notification to pitwall; sets time to 9999s
-- `{id}_push_lapE` — fastest-lap bonus; subtracts 3s
-- `race_endE` — sent by pitwall after `declare_winner`; asserts local `race_over` to stop internal events
-- `rain_warningE`, `safety_car_deployedE` — cosmetic notifications to cars *(guarded: silently ignored if `race_over`)*
-- `green_flagE` — sent by pitwall when safety car is recalled; car reacts with a push message
-- `retire_{id}E` — car parks; cosmetic notification
-
-**Internal events** (`nameI:>`) — proactive, fire autonomously when condition is true:
-```prolog
-% Generated per-car in {id}Car.txt
-engine_failure_{id} :-
-    race_started,                        % only after race begins
-    \+ race_over,                        % only while race is live
-    \+ engine_failure_{id}_fired,        % fire at most once
-    random(0, 1000, R), R < 2.
-engine_failure_{id}I:>
-    assert(engine_failure_{id}_fired),
-    send_m(pitwall, send_message({id}_engine_failure, {id})).
-
-push_lap_{id} :-
-    race_started,
-    \+ race_over,
-    \+ push_lap_{id}_fired,              % fire at most once per lap (reset each lap_go)
-    random(0, 100, R), R < 10.
-push_lap_{id}I:>
-    assert(push_lap_{id}_fired),
-    send_m(pitwall, send_message({id}_push_lap, {id})).
-```
-
-**Non-determinism** — `random_track_event/0` in PitWall, rolled mid-race (never on last lap, at most once per lap via `track_event_this_lap` flag):
-```prolog
-random_track_event :-
-    if(track_event_this_lap, true,           % at most one event per lap
-        (random(0, 10, R),
-         if(R < 2, /* 20% SAFETY CAR +10s */,
-         if(R < 4, /* 20% RAIN +5s */,
-            true)))).
-```
-
-**Safety car recall chain** — when the last car of a lap resets `track_event_this_lap`:
-```
-PitWall ──recall──► SafetyCar
-                        │ recallE: retract(sc_active), send sc_recalled → PitWall
-                        ▼
-                    PitWall sc_recalledE: "GREEN FLAG!" + send green_flag → all cars
-                        │
-                        ▼
-                    Car green_flagE: driver reaction message
-```
-
----
-
-## Dynamic Agent System
-
-Car agents are **not hardcoded** anywhere. The entire pipeline is driven by `agents.json`:
-
-```
-agents.json
-    └──► generate_agents.py
-              ├── mas/instances/{id}.txt       (one per car)
-              ├── mas/types/{id}Car.txt        (one per car)
-              ├── mas/types/pitWallType.txt    (round-robin over all cars)
-              ├── mas/types/semaphoreType.txt  (waits N_cars + 2 ready signals)
-              └── mas/types/safetyCarType.txt
-```
-
-`generate_agents.py` is called automatically by `startmas.sh` every launch. It is **smart about regeneration**:
-
-| Situation | Behaviour |
-|-----------|-----------|
-| `agents.json` unchanged (same car IDs on disk) | Skips — no files written |
-| New car added to `agents.json` | Full regeneration |
-| Car removed from `agents.json` | Stale `{id}.txt` / `{id}Car.txt` deleted, then full regeneration |
-| `--force` flag | Always regenerates unconditionally |
-
-### Adding or removing a car
-
-Edit `agents.json`:
-
-```json
-{
-  "total_laps": 5,
-  "cars": [
-    { "id": "ferrari",  "team": "Ferrari",  "car_model": "SF-24",  "driver": "Leclerc",    "label": "Ferrari SF-24",  "color": "#180505", "border": "#cc2200" },
-    { "id": "myclubcar","team": "My Club",  "car_model": "X1",     "driver": "Rossi",      "label": "Club X1",        "color": "#001020", "border": "#00aaff" }
-  ]
-}
-```
-
-Then run `bash startmas.sh` — all DALI files and the dashboard update automatically.
-
----
-
-> For installation and setup instructions, see [SETUP.md](SETUP.md).
-
----
-
-## Dashboard Features
-
-| UI element | Function |
-|---|---|
-| **&#8635; Restart MAS** | Kills SICStus + tmux session, reruns `startmas.sh` |
-| **⚠ Deploy SC** | Sends deploy message to safety car immediately |
-| **✓ Recall SC** | Recalls the safety car |
-| **Agent: / Command:** bar | Send any arbitrary Prolog command to any agent pane |
-| ↓ pin button | Toggle auto-scroll for that pane |
-| ✕ button | Clear pane output |
-| − button | Minimize pane to tray |
+> For full documentation see [`docs/latex/`](docs/latex/).
 
 ---
 
@@ -196,6 +18,10 @@ f1_race/
 ├── docker-compose.yml   # Docker Compose (mas + ui containers)
 ├── .env.example         # Template for SICSTUS_PATH
 ├── .dockerignore
+├── patch/
+│   ├── apply_dali_wi.sh       # Patches upstream DALI files at runtime
+│   ├── active_server_wi.pl    # Patched server file
+│   └── active_user_wi.pl      # Patched user-agent file
 ├── docker/
 │   ├── setup.sh         # Auto-detects SICStus, writes .env
 │   ├── mas/Dockerfile
@@ -226,6 +52,144 @@ f1_race/
 ├── work/                # Runtime (auto-generated)
 └── log/                 # Runtime (auto-generated)
 ```
+
+---
+
+## Agents
+
+| Agent | Type | Role |
+|-------|------|------|
+| `semaphore` | `semaphoreType` | Collects `ready` signals, runs F1 lights sequence, fires `start_race` |
+| *(car agents)* | `{id}Car` | Generated from `agents.json`; run laps and react to track events |
+| `pitwall` | `pitWallType` | Race coordinator: lap dispatch, timing, random track events |
+| `safety_car` | `safetyCarType` | Deploys/recalls on PitWall command, triggers green-flag chain |
+
+### Default car roster (`agents.json`)
+
+| ID | Team | Driver | Car |
+|----|------|--------|-----|
+| `ferrari` | Ferrari | Leclerc | SF-24 |
+| `mclaren` | McLaren | Norris | MCL38 |
+
+
+> Add or remove cars by editing `agents.json` only — everything else is generated automatically.
+
+### Agent Event Reference
+
+**CarAgent** (one per car, e.g. `ferrariCar`)
+
+| Name | Description |
+|------|-------------|
+| *Knowledge base* | |
+| `race_started` | Set on lights-out; gates all lap and event handlers |
+| `race_over` | Set on `race_endE`; silences all guarded handlers |
+| `engine_failure_{id}_fired` | One-shot flag; prevents engine-failure from firing twice |
+| `push_lap_{id}_fired` | Per-lap flag; retracted by `lap_go_{id}E` each lap |
+| *External events* | |
+| `start_raceE` | Lights-out from semaphore; asserts `race_started`, sends `lap_done_{id}` |
+| `lap_go_{id}E` | Pit wall starts a new lap; resets push-lap flag, sends `lap_done_{id}` |
+| `box_{id}E` | Pit-stop request; sends `pit_done_{id}` (+25s penalty) |
+| `rain_warningE` | Heavy-rain notification (cosmetic, guarded by `race_over`) |
+| `safety_car_deployedE` | Safety-car deployment notification (cosmetic, guarded by `race_over`) |
+| `green_flagE` | Safety-car recalled; car acknowledges green flag (guarded by `race_over`) |
+| `retire_{id}E` | DNF confirmation from pit wall; car parks |
+| `race_endE` | Race-over broadcast; asserts `race_over` |
+| *Internal events* | |
+| `engine_failure_{id}I` | ~0.2%/cycle; fires once per race; notifies pit wall of DNF |
+| `push_lap_{id}I` | ~10%/cycle; fires once per lap; deducts 3s via pit wall |
+
+**PitWallAgent**
+
+| Name | Description |
+|------|-------------|
+| *Knowledge base* | |
+| `{id}_time/1` | Accumulated race time per car (seconds) |
+| `{id}_dnf/0` | Asserted on engine failure; makes `effective_time` return 9999 |
+| `lap/1` | Current completed-lap counter; starts at 0 |
+| `race_over/0` | Asserted by `declare_winner`; gates all handlers |
+| `track_event_this_lap/0` | One-shot flag; prevents multiple track events per lap |
+| *External events* | |
+| `lap_done_{id}E` | Adds lap time, rolls track event, dispatches to next car |
+| `pit_done_{id}E` | Adds +25s, dispatches to next car |
+| `sc_recalledE` | Safety car recalled; broadcasts `green_flag` to all cars |
+| `{id}_engine_failureE` | Asserts DNF, retires car, triggers `declare_winner` |
+| `{id}_push_lapE` | Subtracts 3s from the car's accumulator |
+
+**SemaphoreAgent**
+
+| Name | Description |
+|------|-------------|
+| *Knowledge base* | |
+| `ready_count/1` | Running count of `ready` signals received; initialised to 0 |
+| *External events* | |
+| `readyE` | Increments the counter; fires `lights_sequence` when threshold is reached |
+
+**SafetyCarAgent**
+
+| Name | Description |
+|------|-------------|
+| *Knowledge base* | |
+| `sc_active/0` | Present while the safety car is deployed; absent otherwise |
+| *External events* | |
+| `deployE` | Asserts `sc_active`; idempotent if already deployed |
+| `recallE` | Retracts `sc_active`, sends `sc_recalled` to pit wall |
+
+---
+
+## Dynamic Agent System
+
+Car agents are **not hardcoded** anywhere. `generate_agents.py` reads `agents.json` and generates all DALI files at each startup:
+```
+agents.json
+    └──> generate_agents.py
+              ├── mas/instances/{id}.txt
+              ├── mas/types/{id}Car.txt
+              ├── mas/types/pitWallType.txt
+              ├── mas/types/semaphoreType.txt
+              └── mas/types/safetyCarType.txt
+```
+
+| Situation | Behaviour |
+|-----------|-----------|
+| `agents.json` unchanged | Skips — no files written |
+| New car added | Full regeneration |
+| Car removed | Stale files deleted, then full regeneration |
+| `--force` flag | Always regenerates |
+
+To add a car, add an entry to `agents.json` and run `bash startmas.sh`:
+
+```json
+{ 
+    "id": "myclubcar", 
+    "team": "My Club", 
+    "car_model": "X1", 
+    "driver": "Rossi",
+    "label": "Club X1", 
+    "color": "#001020", 
+    "border": "#00aaff" 
+}
+```
+
+---
+
+## Race Flow
+
+### Startup Sequence
+
+1. Every agent (all cars, pit wall, safety car) sends a `ready` message to the semaphore.
+2. The semaphore waits until it has collected exactly N_cars + 2 ready signals.
+3. The semaphore runs the F1 lights sequence (5 lights on, 1s each; 2s pause; lights out) and sends `start_race` to Car[0].
+
+### Lap Round-Robin
+
+Once the race starts, laps proceed in a strict round-robin over the ordered car list:
+
+1. `Car[i]` receives `lap_go_{id}` from the pit wall.
+2. `Car[i]` sends `lap_done_{id}` to the pit wall.
+3. The pit wall adds a random lap time, optionally fires a track event, and sends `lap_go_{id+1}` to the next car.
+4. After the last car of a lap completes: lap counter increments, standings printed. If laps remain: `random_track_event` is rolled, then `lap_go` is sent to Car[0]. If race complete: `declare_winner` is called and `race_end` is broadcast.
+
+At any point a car's internal events (`engine_failureI`, `push_lapI`) can fire autonomously.
 
 ---
 
@@ -350,6 +314,45 @@ sequenceDiagram
 
     Note over C1: On next lap_go_ferrari:<br/>retractall(push_lap_ferrari_fired)<br/>→ can fire again next lap
 ```
+
+---
+
+## Timing
+
+Lower total accumulated time wins.
+
+| Event | Time change |
+|---|---|
+| Each lap | `+ random(60..90)` s |
+| Pit stop | `+ 25s` |
+| Safety car (20% chance/lap) | `+ 10s` all cars |
+| Heavy rain (20% chance/lap) | `+ 5s` all cars |
+| Push lap (~10% chance, internal event) | `- 3s` |
+| Engine failure / DNF (~0.2% chance, internal event) | `time = 9999s` → race ends |
+
+---
+
+> For installation and setup instructions, see [SETUP.md](SETUP.md).
+
+---
+
+## Dashboard Features
+
+| UI element | Function |
+|---|---|
+| **&#8635; Restart MAS** | Kills SICStus + tmux session, reruns `startmas.sh` |
+| **⚠ Deploy SC** | Sends deploy message to safety car immediately |
+| **✓ Recall SC** | Recalls the safety car |
+| **Agent: / Command:** bar | Send any arbitrary Prolog command to any agent pane |
+| ↓ pin button | Toggle auto-scroll for that pane |
+| ✕ button | Clear pane output |
+| − button | Minimize pane to tray |
+
+---
+
+## Patch System
+
+The F1 example requires fixes to three upstream DALI framework files (`active_server_wi.pl`, `active_user_wi.pl`, `active_dali_wi.pl`) for dynamic port selection and address propagation. Rather than modifying the upstream files, `patch/apply_dali_wi.sh` patches them **automatically at every MAS startup** — no permanent changes in the repository.
 
 ---
 
