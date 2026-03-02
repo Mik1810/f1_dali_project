@@ -3,3 +3,5 @@ ui/__pycache__
 __pycache__
 .env
 export_diagrams.py
+video/Dali_project_edited.mp4
+!video/Dali_project_edited_compressed.mp4

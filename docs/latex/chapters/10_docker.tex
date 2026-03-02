@@ -54,18 +54,24 @@ the dashboard to read agent panes with zero modifications to the agent logic.
 \subsection{Quickstart}
 As in the native approach, the configuration requires:
 \begin{enumerate}
-  \item Clone the DALI repo from \url{https://github.com/AAAI-DISIM-UnivAQ/DALI} and navigate to the \texttt{DALI/Examples} folder.
+  \item Clone the DALI repo from \url{https://github.com/AAAI-DISIM-UnivAQ/DALI}, 
+  checkout the commit to an older version just to be sure that everything works 
+  correctly as in mine setup, then navigate to the \texttt{DALI/Examples} folder.
+  \begin{lstlisting}[language=bash, numbers=none]
+  git checkout 255abcac25db7fe43fdbf7945656240bd61d25f2
+  \end{lstlisting}
   \item Clone the GitHub repo project from \url{https://github.com/Mik1810/f1_dali_project} under \texttt{Examples} folder.
 \end{enumerate}
 
 Then, execute the following commands:
 \begin{lstlisting}[language=bash, numbers=none]
+# 1. Navigate to the project folder
 cd DALI/Examples/f1_race
 
-# 1. Auto-detect SICStus and write .env  (run once)
+# 2. Auto-detect SICStus and write .env  (run once)
 bash docker/setup.sh
 
-# 2. Build and start
+# 3. Build and start
 docker compose up --build -d
 \end{lstlisting}
 
